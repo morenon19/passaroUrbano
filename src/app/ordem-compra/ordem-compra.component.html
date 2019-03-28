@@ -1,7 +1,7 @@
 <div class="container">
-  <div class="ordem-compra mt-5" style="margin-bottom: 120px" *ngIf="idPedidoCompra===undefined">
-    <form novalidate>
-    
+  <div *ngIf="idPedido===undefined" class="ordem-compra">
+    <form #formulario = "ngForm" (ngSubmit)="confirmarCompra(formulario)" novalidate>
+ 
       <h5>Sua Compra</h5>
       <hr />
 
@@ -29,7 +29,7 @@
           29.90
         </div>
       </div>
-      
+
       <div class="form-row" style="background: #FAFAFA; padding: 20px; border-bottom: solid 1px #F0F0F0">
         <div class="form-group col-sm-1">
           <img src="/assets/ofertas/4/img1.jpg" class="img-fluid">
@@ -54,7 +54,7 @@
           31.90
         </div>
       </div>
-      
+
       <div class="form-row">
         <div class="form-group col d-flex justify-content-end">
           <h4>Total do pedido: 61.80</h4>
@@ -62,7 +62,7 @@
       </div>
       <br />
 
-
+      <pre>{{formulario.value | json}}</pre>
       <h5>Dados de entrega</h5>
       <hr />
 
@@ -70,37 +70,37 @@
 
         <div class="form-group col-md-6">
           <input type="text" 
-          class="form-control {{enderecoEstadoPrimitivo ? '' : (enderecoValido==true? 'is-valid' : 'is-invalid')}}" 
+          class="form-control" 
           placeholder="Endereço" 
           autocomplete="off" 
-          minlength="5" 
+          minlength="5"
           required
-          #inputEndereco 
-          (input)="atualizaEndereco(inputEndereco.value)">
-          <div class="invalid-feedback">Endereço inválido</div>
-          <div class="valid-feedback">Endereço válido</div>
+          name="endereco"
+          #inputEndereco="ngModel"
+          ngModel>
+          <small *ngIf="inputEndereco.invalid && inputEndereco.touched" class="form-text text-danger">Endereço inválido</small>
         </div>
 
         <div class="form-group col-md-2">
           <input type="text" 
-          class="form-control {{numeroEstadoPrimitivo ? '' : (numeroValido==true? 'is-valid' : 'is-invalid')}}"
-          placeholder="Número"
-          autocomplete="off"
+          class="form-control" 
+          placeholder="Número" 
+          autocomplete="off" 
           minlength="1"
           required
-          #inputNumero
-          (input)="atualizaNumero(inputNumero.value)">
-          <div class="valid-feedback">Ok</div>
+          name="numero"
+          #inputNumero = "ngModel"
+          ngModel>
+          <small *ngIf="inputNumero.invalid && inputNumero.touched" class="form-text text-danger">Número inválido</small>
         </div>
 
         <div class="form-group col-md-4">
           <input type="text" 
-          class="form-control {{complementoEstadoPrimitivo ? '' : (complementoValido==true? 'is-valid' : '')}}"
-          placeholder="Complemento"
+          class="form-control" 
+          placeholder="Complemento" 
           autocomplete="off"
-          #inputComplemento
-          (input)="atualizaComplemento(inputComplemento.value)" >
-          <div class="valid-feedback">Ok</div>
+          name="complemento"
+          ngModel>
         </div>
 
       </div>
@@ -110,30 +110,27 @@
       <hr />
 
       <div class="form-row">
-          
+
         <div class="form-group col-md-3">
-          <select class="form-control {{formaPagamentoEstadoPrimitivo ? '' : (formaPagamentoValido==true? 'is-valid' : 'is-invalid')}}"
-          #inputFormaPagamento
-          (change)="atualizaFormaPagamento(inputFormaPagamento.value)" >
+          <select class="form-control"
+          name="formaPagamento"
+          ngModel
+          #inputFormaPagamento = "ngModel"
+          required>
             <option value="">Selecione uma opção</option>
-            <option>Dinheiro</option>
-            <option>Débito</option>
+            <option value="dinheiro">Dinheiro</option>
+            <option value="debito">Débito</option>
           </select>
-          <div class="invalid-feedback">Selecione uma forma de pagamento</div>
-          <div class="valid-feedback">Ok</div>
+          <small *ngIf="inputFormaPagamento.invalid && inputFormaPagamento.touched" class="form-text text-danger">Selecione uma opção</small>
         </div>
       </div>
 
       <hr />
-      <button type="button" 
-        class="btn btn-primary btn-lg" 
-        [disabled] = "estadoForm"
-        (click)="confirmarCompra()"> Cofirmar compra
-      </button>
+      <button type="submit"
+      class="btn btn-primary btn-lg">Cofirmar compra</button>
     </form>
   </div>
-
-  <div class="ordem-compra mt-5" style="margin-bottom: 120px" *ngIf="idPedidoCompra!==undefined">
-    <pur-ordem-compra-sucesso [idPedido]=idPedidoCompra></pur-ordem-compra-sucesso>
+  <div *ngIf="idPedido!==undefined" class="ordem-compra">
+    <pur-ordem-compra-sucesso [idPedido] = idPedido></pur-ordem-compra-sucesso>
   </div>
 </div>

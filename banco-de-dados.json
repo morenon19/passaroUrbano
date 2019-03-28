@@ -206,6 +206,27 @@
       "complemento": "55",
       "formaPagamento": "Dinheiro",
       "id": 3
+    },
+    {
+      "endereco": "Rua teste",
+      "numero": "22",
+      "complemento": "8",
+      "formaPagamento": "dinheiro",
+      "id": 4
+    },
+    {
+      "endereco": "Teste",
+      "numero": "2",
+      "complemento": "2",
+      "formaPagamento": "dinheiro",
+      "id": 5
+    },
+    {
+      "endereco": "Teste",
+      "numero": "2",
+      "complemento": "2",
+      "formaPagamento": "debito",
+      "id": 6
     }
   ]
 }
