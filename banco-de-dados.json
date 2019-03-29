@@ -227,6 +227,27 @@
       "complemento": "2",
       "formaPagamento": "debito",
       "id": 6
+    },
+    {
+      "endereco": "testeee",
+      "numero": "22",
+      "complemento": null,
+      "formaPagamento": "dinheiro",
+      "id": 7
+    },
+    {
+      "endereco": "sdfsdf",
+      "numero": "sdf",
+      "complemento": "sdfsdfsf",
+      "formaPagamento": "dinheiro",
+      "id": 8
+    },
+    {
+      "endereco": "ajsdas",
+      "numero": "asd2",
+      "complemento": "as",
+      "formaPagamento": "dinheiro",
+      "id": 9
     }
   ]
 }
