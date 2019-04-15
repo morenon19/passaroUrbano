@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router'
 import { ReactiveFormsModule } from '@angular/forms'
 import { ROUTES } from './app.routes' 
 
+import { CarrinhoService } from './carrinho.service'
+
 import { AppComponent } from './app.component';
 import { TopoComponent } from './topo/topo.component';
 import { HomeComponent } from './home/home.component';
@@ -40,7 +42,7 @@ import { OrdemCompraSucessoComponent } from './ordem-compra-sucesso/ordem-compra
     RouterModule.forRoot(ROUTES),
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [CarrinhoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
